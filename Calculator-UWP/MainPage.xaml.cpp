@@ -24,8 +24,7 @@ void MainPage::OnSizeChanged(Object^ sender, SizeChangedEventArgs^ e) {
     view->TryResizeView(PrefferedApplicationWindowSize);
 }
 
-String^
-convertFromString(const string& input) {
+String^ convertFromString(const string& input) {
     wstring w_str = wstring(input.begin(), input.end());
     const wchar_t* w_chars = w_str.c_str();
     return (ref new String(w_chars, (unsigned int)w_str.length()));
