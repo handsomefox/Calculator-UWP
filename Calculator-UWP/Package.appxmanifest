@@ -9,7 +9,7 @@
   <Identity
     Name="97813dee-d5b5-4f8e-9f05-460df5ab0543"
     Publisher="CN=hands"
-    Version="1.0.0.0" />
+    Version="1.0.2.0" />
 
   <mp:PhoneIdentity PhoneProductId="97813dee-d5b5-4f8e-9f05-460df5ab0543" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -44,11 +44,9 @@
         </uap:DefaultTile >
         <uap:SplashScreen Image="Assets\SplashScreen.png"/>
         <uap:LockScreen BadgeLogo="Assets\BadgeLogo.png" Notification="badge"/>
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="portrait"/></uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>
-
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
 </Package>
