@@ -24,7 +24,8 @@ void MainPage::OnSizeChanged(Object^ sender, SizeChangedEventArgs^ e) {
     view->TryResizeView(PrefferedApplicationWindowSize);
 }
 
-String^ convertFromString(const string& input) {
+String^
+convertFromString(const string& input) {
     wstring w_str = wstring(input.begin(), input.end());
     const wchar_t* w_chars = w_str.c_str();
     return (ref new String(w_chars, (unsigned int)w_str.length()));
@@ -33,7 +34,7 @@ String^ convertFromString(const string& input) {
 bool CheckForSpecialSymbols(string& input) {
     size_t length = input.length() - 1;
     if (input[length] == '*' || input[length] == '/' || input[length] == '+' ||
-        input[length] == '-' || input[length] == '%')
+        input[length] == '-' || input[length] == '%' || input[length] == '.')
         return true;
     else
         return false;
@@ -42,7 +43,7 @@ bool CheckForSpecialSymbols(string& input, bool checkForBrackets) {
     size_t length = input.length() - 1;
     if (input[length] != '*' || input[length] != '/' || input[length] != '+' ||
         input[length] != '-' || input[length] != '(' || input[length] != ')' ||
-        input[length] == '%')
+        input[length] == '%' || input[length] == '.')
         return true;
     else
         return false;
@@ -217,9 +218,10 @@ void MainPage::Button_Sqr_Click(Object^ sender, RoutedEventArgs^ e) {
 }
 void MainPage::Button_Dot_Click(Object^ sender, RoutedEventArgs^ e) {
     if (input.length() > 0) {
-        if (CheckForSpecialSymbols(input, 1)) {
-            input += ".";
-        }
+        if (CheckForSpecialSymbols(input))
+            input[input.length() - 1] = '.';
+        else
+            input += '.';
     }
     else
         input += "0.";
