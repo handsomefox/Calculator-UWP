@@ -204,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="TinyExpr\LICENSE.txt" />
+    <Text Include="LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

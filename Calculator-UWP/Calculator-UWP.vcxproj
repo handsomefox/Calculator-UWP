@@ -370,6 +370,7 @@
     <Page Include="MainPage.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="LICENSE.txt" />
     <Text Include="TinyExpr\LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
