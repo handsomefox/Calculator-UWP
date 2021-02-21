@@ -17,10 +17,18 @@ using namespace Windows::UI::Xaml::Data;
 using namespace Windows::UI::Xaml::Input;
 using namespace Windows::UI::Xaml::Media;
 using namespace Windows::UI::Xaml::Navigation;
+using namespace Windows::UI::ViewManagement;
 
 std::string input;
 double result = 0.0;
 bool leftBracketCreated = false;
+Size PrefferedApplicationWindowSize(328, 564);
+
+void Calculator_UWP::MainPage::OnSizeChanged(Platform::Object^ sender, Windows::UI::Xaml::SizeChangedEventArgs^ e)
+{
+    auto view = ApplicationView::GetForCurrentView();
+    view->TryResizeView(PrefferedApplicationWindowSize);
+}
 
 Platform::String^ convertFromString(const std::string& input) {
     std::wstring w_str = std::wstring(input.begin(), input.end());
@@ -64,7 +72,12 @@ public:
     bool GetPowerState() { return m_calculatingPower; };
 } s_powerOf;
 
-MainPage::MainPage() { InitializeComponent(); }
+MainPage::MainPage() {
+	InitializeComponent();
+	auto view = ApplicationView::GetForCurrentView();
+	view->TryResizeView(PrefferedApplicationWindowSize);
+    view->SetPreferredMinSize(PrefferedApplicationWindowSize);
+}
 
 void Calculator_UWP::MainPage::UpdateCalculatorOutput()
 {
