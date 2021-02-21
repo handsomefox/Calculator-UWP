@@ -23,7 +23,7 @@
         <Button x:Name="Button_Back" Click="Button_Back_Click" Content="⌫" VerticalAlignment="Top" Height="80" Background="#FF131313" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" Width="80" Margin="248,73,0,0"/>
         <Button x:Name="Button_Sqr" Click="Button_Sqr_Click" Content="x²" Margin="0,401,248,0" VerticalAlignment="Top" Height="80" Background="#FF131313" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" Width="80"/>
         <Button x:Name="Button_Inverse" Content="1/x" Margin="166,73,0,0" VerticalAlignment="Top" Height="80" Background="#FF131313" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" Width="80" Click="Button_Inverse_Click"/>
-        <Button x:Name="Button_powerOf" Content="x!" Margin="83,73,0,0" VerticalAlignment="Top" Height="80" Background="#FF131313" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" Width="80" Click="Button_powerOf_Click"/>
+        <Button x:Name="Button_powerOf" Content="xⁿ" Margin="83,73,0,0" VerticalAlignment="Top" Height="80" Background="#FF131313" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" Width="80" Click="Button_powerOf_Click"/>
         <Button x:Name="Button_ln" Content="ln()" Margin="0,73,0,0" VerticalAlignment="Top" Height="80" Background="#FF131313" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" Width="80" Click="Button_ln_Click"/>
         <Button x:Name="Button_Mod" Content="%" Margin="166,401,0,0" VerticalAlignment="Top" Height="80" Background="#FF131313" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" Width="80" Click="Button_Mod_Click"/>
     </Grid>
