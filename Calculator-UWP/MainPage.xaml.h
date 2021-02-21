@@ -18,6 +18,8 @@ namespace Calculator_UWP
 		MainPage();
 
 	private:
+		void UpdateCalculatorOutput();
+		void RemoveTrailingZeroesAndUpdate(double result);
 		void ButtonClear_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void Button1_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void Button2_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
