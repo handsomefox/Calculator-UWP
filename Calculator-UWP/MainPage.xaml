@@ -1,6 +1,6 @@
 ﻿<Page x:Class="Calculator_UWP.MainPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:Calculator_UWP" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SizeChanged="OnSizeChanged">
     <Grid HorizontalAlignment="Center" Height="564" Margin="0,0,0,0" VerticalAlignment="Center" Width="328" Background="#FF1F1F1F">
-        <TextBox x:Name="CalculatorOutputTextBox" TextWrapping="NoWrap" Text="" Background="#FF1F1F1F" Margin="0,0,82,0" FontSize="22" TextAlignment="Right" FontWeight="Normal" FontStyle="Normal" Foreground="#CCFFFFFF" InputScope="Digits" PlaceholderText="0" IsReadOnly="True" IsTapEnabled="False" IsTabStop="False" BorderThickness="0" HorizontalAlignment="Right" Width="246" Height="71" VerticalAlignment="Top" FocusVisualPrimaryBrush="Black"/>
+        <TextBox PlaceholderForeground="Gray"  x:Name="CalculatorOutputTextBox" TextWrapping="NoWrap" Text="" Background="#FF1F1F1F" Margin="0,0,82,0" FontSize="22" TextAlignment="Right" FontWeight="Normal" FontStyle="Normal" Foreground="#CCFFFFFF" InputScope="Digits" PlaceholderText="0" IsReadOnly="True" IsTapEnabled="False" IsTabStop="False" BorderThickness="0" HorizontalAlignment="Right" Width="246" Height="71" VerticalAlignment="Top" />
         <Button x:Name="ButtonClear" Content="C" Margin="248,0,0,0" Background="Red" Click="ButtonClear_Click" Foreground="#CCFFFFFF" Height="71" Width="80" VerticalAlignment="Top"/>
         <Button x:Name="Button1" Content="1" Margin="0,319,0,0" VerticalAlignment="Top" Height="80" Background="#FF060606" Click="Button1_Click" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" Width="80"/>
         <Button x:Name="Button2" Content="2" Margin="83,319,0,0" VerticalAlignment="Top" Height="80" Background="#FF060606" Click="Button2_Click" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" Width="80"/>
@@ -16,7 +16,11 @@
         <Button x:Name="Button_Subtraction" Content="-" Margin="248,319,0,0" VerticalAlignment="Top" Height="80" Background="#FF131313" Click="Button_Subtraction_Click" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" Width="80"/>
         <Button x:Name="Button_Division" Content="/" Margin="248,155,0,0" VerticalAlignment="Top" Height="80" Background="#FF131313" Click="Button_Division_Click" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" Width="80"/>
         <Button x:Name="Button_Multiplication" Content="*" Margin="248,237,0,0" VerticalAlignment="Top" Height="80" Background="#FF131313" Click="Button_Multiplication_Click" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" Width="80"/>
-        <Button x:Name="Button_Equals" Content="=" Margin="248,483,0,0" Height="81" Width="80" Click="Button_Equals_Click" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" Background="#7F744DA9" VerticalAlignment="Top"/>
+        <Button x:Name="Button_Equals" Content="=" Margin="248,483,0,0" Height="81" Width="80" Click="Button_Equals_Click" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" VerticalAlignment="Top">
+            <Button.Background>
+                <SolidColorBrush Color="{ThemeResource SystemAccentColor}"/>
+            </Button.Background>
+        </Button>
         <Button x:Name="Button_Bracket" Click="Button_Bracket_Click" Content="()" Margin="0,483,0,0" VerticalAlignment="Top" Background="#FF131313" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" Width="80" Height="80"/>
         <Button x:Name="Button_Dot" Click="Button_Dot_Click" Content="." Margin="83,483,0,0" VerticalAlignment="Top" Background="#FF131313" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" Width="80" Height="80"/>
         <Button x:Name="Button_Sq_Root" Click="Button_Sq_Root_Click" Content="√" Margin="166,483,0,0" VerticalAlignment="Top" Height="80" Background="#FF131313" Foreground="#CCFFFFFF" FontSize="20" FontWeight="Bold" Width="80"/>
