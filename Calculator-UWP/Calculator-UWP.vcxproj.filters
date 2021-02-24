@@ -19,6 +19,7 @@
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="TinyExpr\tinyexpr.h" />
+    <ClInclude Include="History.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\LockScreenLogo.scale-200.png">
