@@ -119,7 +119,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
     <GenerateAppInstallerFile>True</GenerateAppInstallerFile>
-    <PackageCertificateThumbprint>2E83A1634E3AF317EDFAC8BCE7D4BCE4701F7338</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>E6615A3CCAB06738C5A532561087BB3C0FC39310</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
