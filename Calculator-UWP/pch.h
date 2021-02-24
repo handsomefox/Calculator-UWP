@@ -7,3 +7,4 @@
 #include <ppltasks.h>
 #include <sstream>
 #include <string>
+#include <vector>
