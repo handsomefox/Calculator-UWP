@@ -9,11 +9,13 @@ void Calculator::Append(const char* symbol) { m_input += symbol; }
 void Calculator::AppendResult(double res)
 {
 	m_output = RemoveTrailingZeroes(res);
+	m_input = m_output;
 	History::AddToHistory(m_input, m_output);
 }
 void Calculator::AppendResult(double res, std::string& input)
 {
 	m_output = RemoveTrailingZeroes(res);
+	m_input = m_output;
 	History::AddToHistory(input, m_output);
 }
 void Calculator::Back(Platform::String^ input)
