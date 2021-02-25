@@ -15,11 +15,17 @@
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="TinyExpr\tinyexpr.c" />
+    <ClCompile Include="src\Exponent.cpp" />
+    <ClCompile Include="src\History.cpp" />
+    <ClCompile Include="src\Calculator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="TinyExpr\tinyexpr.h" />
-    <ClInclude Include="History.h" />
+    <ClInclude Include="src\Exponent.h" />
+    <ClInclude Include="src\History.h" />
+    <ClInclude Include="src\Functions.h" />
+    <ClInclude Include="src\Calculator.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\LockScreenLogo.scale-200.png">
