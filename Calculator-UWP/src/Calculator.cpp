@@ -25,20 +25,26 @@ void Calculator::Back(Platform::String^ input)
 	}
 	else
 	{
-		if (!m_input.empty())
+		if (!m_input.empty()) {
 			m_input.pop_back();
+		}
 	}
 }
-std::string Calculator::Calculate()
+bool Calculator::ExpressionIsValid()
 {
 	std::string special_symbols = "*/+-%.";
 	for (size_t j = 0; j < special_symbols.length(); ++j) {
-		if (m_input[Calculator::Length() - 1] == special_symbols[j]) {
+		if (m_input[Length() - 1] == special_symbols[j]) {
 			Functions::DisplayPopup("Invalid Input!");
 			Clear();
-			return "";
+			return false;
 		}
 	}
+	return true;
+}
+std::string Calculator::Calculate()
+{
+	if (ExpressionIsValid() == false) return "";
 	m_result = te_interp(m_input.c_str(), 0);
 	m_output = RemoveTrailingZeroes(m_result);
 	History::AddToHistory(m_input, m_output);
@@ -49,16 +55,15 @@ void Calculator::Clear()
 	m_input.clear();
 	m_output.clear();
 	m_result = 0.0;
+	LeftBracketCreated = false;
 }
 bool Calculator::Empty()
 {
-	if (m_input.empty())
-		return true;
-	else
-		return false;
+	return m_input.empty();
 }
 void Calculator::Exponent(const std::string& input)
 {
+	if (ExpressionIsValid() == false) return;
 	std::string history = input + "^2";
 	double val = te_interp(input.c_str(), 0);
 	double squared = val * val;
@@ -105,13 +110,14 @@ bool Calculator::InputHasSpecialSymbols(bool CheckForBrackets)
 		special_symbols += brackets;
 	}
 	for (size_t j = 0; j < special_symbols.length(); ++j) {
-		if (m_input[Calculator::Length() - 1] == special_symbols[j])
+		if (m_input[Length() - 1] == special_symbols[j])
 			return true;
 	}
 	return false;
 }
 void Calculator::Inverse(const std::string& input)
 {
+	if (ExpressionIsValid() == false) return;
 	std::string history = "1/" + input;
 	double val = te_interp(input.c_str(), 0);
 	double res = 1 / val;
@@ -119,16 +125,26 @@ void Calculator::Inverse(const std::string& input)
 	m_input = m_output;
 	History::AddToHistory(history, m_output);
 }
+
+bool Calculator::LastSymbolIsBracket()
+{
+	if (!Empty())
+	{
+		return m_input.back() == '(';
+	}
+}
+
 const size_t Calculator::Length() { return m_input.length(); }
 void Calculator::ReplaceAt(size_t length, char symbol)
 {
-	if (Calculator::Length() >= length)
+	if (Length() >= length)
 	{
 		m_input[length] = symbol;
 	}
 }
 void Calculator::Log(const std::string& input)
 {
+	if (ExpressionIsValid() == false) return;
 	std::string history = "ln(" + input + ")";
 	double val = te_interp(input.c_str(), 0);
 	double res = log(val);
@@ -153,6 +169,7 @@ std::string Calculator::RemoveTrailingZeroes(double result)
 }
 void Calculator::Square(const std::string& input)
 {
+	if (ExpressionIsValid() == false) return;
 	std::string history = input + "^2";
 	double val = te_interp(input.c_str(), 0);
 	double res = val * val;
@@ -162,6 +179,7 @@ void Calculator::Square(const std::string& input)
 }
 void Calculator::SquareRoot(const std::string& input)
 {
+	if (ExpressionIsValid() == false) return;
 	std::string history = "sqrt(" + input + ")";
 	double val = te_interp(input.c_str(), 0);
 	double res = sqrt(val);

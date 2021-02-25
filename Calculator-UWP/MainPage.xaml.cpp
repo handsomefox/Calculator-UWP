@@ -16,7 +16,6 @@ using namespace Windows::UI::Xaml;
 using namespace Windows::UI::ViewManagement;
 using namespace Windows::UI::Popups;
 
-bool LeftBracketCreated = false;
 Windows::Foundation::Size PrefferedApplicationWindowSize(548, 564);
 
 void MainPage::UpdateCalculatorInput()
@@ -46,7 +45,7 @@ void MainPage::ButtonClear_Click(Object^ sender, RoutedEventArgs^ e)
 {
 	this->CalculatorOutputTextBox->Text = "";
 	this->CalculatorOutputTextBox->PlaceholderText = "0";
-	LeftBracketCreated = false;
+	Calculator::LeftBracketCreated = false;
 	Calculator::Clear();
 }
 void MainPage::Button1_Click(Object^ sender, RoutedEventArgs^ e)
@@ -103,14 +102,16 @@ void MainPage::Button_Addition_Click(Object^ sender, RoutedEventArgs^ e)
 {
 	if (!Calculator::Empty())
 	{
+		if (Calculator::LastSymbolIsBracket() == true) return;
 		if (Calculator::InputHasSpecialSymbols(false))
 		{
 			if (Calculator::Length() == 1)
 				return;
 			Calculator::ReplaceAt(Calculator::Length() - 1, '+');
 		}
-		else
+		else {
 			Calculator::Append('+');
+		}
 	}
 	UpdateCalculatorInput();
 }
@@ -118,8 +119,10 @@ void MainPage::Button_Subtraction_Click(Object^ sender, RoutedEventArgs^ e)
 {
 	if (!Calculator::Empty())
 	{
-		if (Calculator::InputHasSpecialSymbols(false))
+		if (Calculator::LastSymbolIsBracket() == true) return;
+		if (Calculator::InputHasSpecialSymbols(false)) {
 			Calculator::ReplaceAt(Calculator::Length() - 1, '-');
+		}
 		else
 			Calculator::Append('-');
 	}
@@ -131,6 +134,7 @@ void MainPage::Button_Division_Click(Object^ sender, RoutedEventArgs^ e)
 {
 	if (!Calculator::Empty())
 	{
+		if (Calculator::LastSymbolIsBracket() == true) return;
 		if (Calculator::InputHasSpecialSymbols(false))
 		{
 			if (Calculator::Length() == 1)
@@ -147,6 +151,7 @@ void MainPage::Button_Multiplication_Click(Object^ sender,
 {
 	if (!Calculator::Empty())
 	{
+		if (Calculator::LastSymbolIsBracket() == true) return;
 		if (Calculator::InputHasSpecialSymbols(false))
 		{
 			if (Calculator::Length() == 1)
@@ -160,7 +165,7 @@ void MainPage::Button_Multiplication_Click(Object^ sender,
 }
 void MainPage::Button_Equals_Click(Object^ sender, RoutedEventArgs^ e)
 {
-	if (Calculator::Input().empty()) return;
+	if (Calculator::Empty()) return;
 	double result = 0.0;
 	if (Exponent::GetPowerState() == true)
 	{
@@ -176,11 +181,11 @@ void MainPage::Button_Equals_Click(Object^ sender, RoutedEventArgs^ e)
 }
 void MainPage::Button_Bracket_Click(Object^ sender, RoutedEventArgs^ e)
 {
-	if (LeftBracketCreated == false)
+	if (Calculator::LeftBracketCreated == false)
 		Calculator::Append('(');
 	else
 		Calculator::Append(')');
-	LeftBracketCreated = !LeftBracketCreated;
+	Calculator::LeftBracketCreated = !Calculator::LeftBracketCreated;
 	UpdateCalculatorInput();
 }
 void MainPage::Button_Sq_Root_Click(Object^ sender, RoutedEventArgs^ e)
@@ -194,6 +199,7 @@ void MainPage::Button_Sq_Root_Click(Object^ sender, RoutedEventArgs^ e)
 void MainPage::Button_Back_Click(Object^ sender, RoutedEventArgs^ e)
 {
 	String^ data = (this->CalculatorOutputTextBox->Text);
+	if(!Calculator::Empty()) if (Calculator::Input().back() == '(') Calculator::LeftBracketCreated = false;
 	Calculator::Back(data);
 	UpdateCalculatorInput();
 }
@@ -209,7 +215,8 @@ void MainPage::Button_Dot_Click(Object^ sender, RoutedEventArgs^ e)
 {
 	if (!Calculator::Empty())
 	{
-		if (Calculator::InputHasSpecialSymbols(false))
+		if (Calculator::LastSymbolIsBracket() == true) return;
+		if (Calculator::InputHasSpecialSymbols(true))
 		{
 			if (Calculator::Length() == 1)
 				return;
@@ -226,7 +233,8 @@ void MainPage::Button_Mod_Click(Object^ sender, RoutedEventArgs^ e)
 {
 	if (!Calculator::Empty())
 	{
-		if (Calculator::InputHasSpecialSymbols(false))
+		if (Calculator::LastSymbolIsBracket() == true) return;
+		if (Calculator::InputHasSpecialSymbols(true))
 		{
 			if (Calculator::Length() == 1)
 				return;
@@ -263,6 +271,7 @@ void Calculator_UWP::MainPage::ButtonClearHistory_Click(
 void MainPage::Button_powerOf_Click(Platform::Object^ sender,
 	Windows::UI::Xaml::RoutedEventArgs^ e)
 {
+	if (Calculator::ExpressionIsValid() == false) return;
 	if (Calculator::InputContainsNumbers())
 	{
 		if (!Calculator::InputHasSpecialSymbols(false))
